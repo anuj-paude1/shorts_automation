@@ -49,18 +49,18 @@ def get_video_pixabay(what=""):
 
 
 def get_img(what):
-    from selenium import webdriver
     import time
+    from selenium import webdriver
     from selenium.webdriver.common.by import By
-    from webdriver_manager.chrome import ChromeDriverManager
+    from selenium import webdriver
     import cloudscraper
-    # Create a Chrome WebDriver instance
-    prompt=what+" png"
-    chrome_options = webdriver.ChromeOptions()
-    chrome_options.binary_location = "/usr/bin/google-chrome-beta"
-    driver = webdriver.Chrome(options=chrome_options)
-    # Open Google Images
+    options = webdriver.ChromeOptions()
+    options.add_argument("--headless=new")
+    driver = webdriver.Chrome(options=options)
+
+
     driver.get('https://www.google.com/imghp')
+    prompt=what+" png transparent"
     # Find the search bar and input your query (e.g., "cat")
     search_box = driver.find_element(By.ID,"APjFqb")
     search_box.send_keys(prompt)
@@ -87,7 +87,6 @@ def get_img(what):
 
     with open(image_path, 'wb') as file:
         file.write(response.content)
-    print(response.content,type(response.content))
     # Close the browser
     driver.quit()
     return f"{image_name}.png"
