@@ -1,0 +1,7 @@
+vosk
+pydub
+youtube-search-python
+pytube
+cloudscraper
+selenium
+webdriver-manager
