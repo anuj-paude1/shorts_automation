@@ -23,6 +23,7 @@ __pycache__/
 # Ignore dependencies and virtual environments
 venv/
 node_modules/
+myenv
 
 # Ignore sensitive or private information
 secret.json
@@ -33,3 +34,8 @@ config.ini
 
 # Ignore generated documentation
 docs/
+*.mp3
+*.wav
+*.mp4
+*.jpg
+*.png

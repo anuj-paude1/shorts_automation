@@ -91,6 +91,52 @@ def get_img(what):
     driver.quit()
     return f"{image_name}.png"
 
+
+def bard_image(prompt,file_name):
+    from bardapi import Bard
+    import requests
+
+    session = requests.Session()
+    session.cookies.set("__Secure-1PSID", "bwgX-pOLfjPhmSn2s5BykxbP79M6eev_cEto8SRQPMmgtIg-zCfdERYsj_jvdHolrsIyag.")
+    session.cookies.set( "__Secure-1PSIDCC", "ACA-OxMY2DKrSIzP1TMvzDpm5OqiLMHaIzSXqBVt2Or45dkCGpm2qQbqtYm58h1M-HmyMcBgL9E")
+    session.cookies.set("__Secure-1PSIDTS", "sidts-CjEB3e41hTbKn7xeSAb6gcM0OMZq7dMf4UxnR2oRlzKFIxiPG9E00QwT_CM7kfXRVtShEAA")
+    session.headers = {
+            "Host": "bard.google.com",
+            "X-Same-Domain": "1",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.4472.114 Safari/537.36",
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+            "Origin": "https://bard.google.com",
+            "Referer": "https://bard.google.com/",
+    }
+
+
+    
+    bard = Bard(token='bwgX-pOLfjPhmSn2s5BykxbP79M6eev_cEto8SRQPMmgtIg-zCfdERYsj_jvdHolrsIyag.',session=session,timeout=30)
+    image = open(f"../temp/images/{file_name}", 'rb').read() # (jpeg, png, webp) are supported.
+    bard_answer = bard.ask_about_image(prompt, image)
+    return (bard_answer['content'])
+
+def bard_text(prompt):
+    from bardapi import Bard
+    import requests
+
+    session = requests.Session()
+    session.cookies.set("__Secure-1PSID", "bwgX-pOLfjPhmSn2s5BykxbP79M6eev_cEto8SRQPMmgtIg-zCfdERYsj_jvdHolrsIyag.")
+    session.cookies.set( "__Secure-1PSIDCC", "ACA-OxMY2DKrSIzP1TMvzDpm5OqiLMHaIzSXqBVt2Or45dkCGpm2qQbqtYm58h1M-HmyMcBgL9E")
+    session.cookies.set("__Secure-1PSIDTS", "sidts-CjEB3e41hTbKn7xeSAb6gcM0OMZq7dMf4UxnR2oRlzKFIxiPG9E00QwT_CM7kfXRVtShEAA")
+    session.headers = {
+            "Host": "bard.google.com",
+            "X-Same-Domain": "1",
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.4472.114 Safari/537.36",
+            "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+            "Origin": "https://bard.google.com",
+            "Referer": "https://bard.google.com/",
+    }
+
+    bard = Bard(token='bwgX-pOLfjPhmSn2s5BykxbP79M6eev_cEto8SRQPMmgtIg-zCfdERYsj_jvdHolrsIyag.',session=session,timeout=30)
+    bard_answer = bard.get_answer(prompt)
+    return (bard_answer['content'])
+
 def main():
     ...
 
