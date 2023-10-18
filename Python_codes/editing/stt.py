@@ -1,6 +1,6 @@
 
 
-def get_audio_timestamp(audio_path="../temp",audio_name="test_audio_1.wav"):
+def get_audio_timestamp(audio_path="../temp/audios",audio_name="test_audio_1.wav"):
     import os
     import wave
     from vosk import Model, KaldiRecognizer
@@ -29,8 +29,7 @@ def get_audio_timestamp(audio_path="../temp",audio_name="test_audio_1.wav"):
             print(json.loads(rec.Result()))
 
     data=json.loads(rec.FinalResult())
-    print(data['result'])
-    return (data['result'])
+    return (data)
     
 
 
@@ -43,7 +42,17 @@ def convert_wav(path,name):
     audio.export(f"{path}/{wav_name}", format="wav")
     return wav_name
 
+def extract_words(sentence):
+    import spacy
 
+    # Load the English language model
+    nlp = spacy.load("en_core_web_sm")
+
+    # Process the sentence with spaCy
+    doc = nlp(sentence)
+
+    for token in doc:
+        print(token.text, token.pos_, token.dep_)
 
 
 def main():

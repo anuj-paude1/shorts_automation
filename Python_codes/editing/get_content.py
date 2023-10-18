@@ -25,6 +25,14 @@ def get_video_yt(what=""):
     video.download(output_path="../temp/videos",filename=filename)
     return filename
 
+def d_(link,name,path="../contents_bg/background_video"):
+    from pytube import Search,YouTube
+    yt=YouTube(link)
+    video = yt.streams.get_highest_resolution()
+    filename=f"{name}.mp4"
+    video.download(output_path=path,filename=filename)
+    return filename
+
 def get_video_pixabay(what=""):
     api_key="32736707-f15f01d5c8df3abc424b8dc95"
     import cloudscraper
@@ -122,8 +130,8 @@ def bard_text(prompt):
 
     session = requests.Session()
     session.cookies.set("__Secure-1PSID", "bwgX-pOLfjPhmSn2s5BykxbP79M6eev_cEto8SRQPMmgtIg-zCfdERYsj_jvdHolrsIyag.")
-    session.cookies.set( "__Secure-1PSIDCC", "ACA-OxMY2DKrSIzP1TMvzDpm5OqiLMHaIzSXqBVt2Or45dkCGpm2qQbqtYm58h1M-HmyMcBgL9E")
-    session.cookies.set("__Secure-1PSIDTS", "sidts-CjEB3e41hTbKn7xeSAb6gcM0OMZq7dMf4UxnR2oRlzKFIxiPG9E00QwT_CM7kfXRVtShEAA")
+    session.cookies.set( "__Secure-1PSIDCC", "ACA-OxP15EAOgQCljJXDZp9tyaEj7ARKnyj4XyRUIaeANcOeGohh1J4eRMmmIM6SvIl5II_MwtA")
+    session.cookies.set("__Secure-1PSIDTS", "sidts-CjEB3e41hYmc0lyX9cA52tMSTiI8rJezyKcnBGWXDDx5XTZ72wWRwZj5rnht1w5WkVucEAA")
     session.headers = {
             "Host": "bard.google.com",
             "X-Same-Domain": "1",
